@@ -12,10 +12,10 @@ die $USAGE unless -e $ARGV[0];
 die $USAGE unless $ARGV[1];
 
 my $gtf_file = $ARGV[0];
-my $gff_file = $ARGV[0].'.gff';
+my $gff_file = $ARGV[0].'.gff3';
 my $dbname = $ARGV[1];
 
-my $command1 = 'perl '.$ENV{HOME}.'/src/gtf2gff3/gtf2gff3'." $gtf_file \> $gff_file";
+my $command1 = 'perl '.$ENV{HOME}.'/src/github/genome_analysis/gtf2gff3_3level.pl'." $gtf_file \> $gff_file";
 system($command1);
 
 sleep 5;

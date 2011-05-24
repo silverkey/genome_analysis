@@ -1,0 +1,44 @@
+Here there are a collection of scripts able to mainly
+work on genomes of which you have a fasta and a gtf/gff
+file. We make extensive use of bioperl and mysql.
+
+The SCRIPT_example_....sh files are example pipelines
+using some scripts from this folder already used to
+analyze the promoters of diatoms genomes.
+
+If you want to analyze the promoters on your own genome:
+
+The folders should be organized in the next way:
+
+                      ANALYSIS
+
+                         |
+                         |
+                         |
+    ____________________________________________
+    |                    |                     |
+    |                    |                     |
+    |                    |                     |
+    |                    |                     |
+
+ GENOME               scripts              sequences
+
+
+
+Into the folder 'GENOME' you need to put the fasta with the
+genome and the gtf with the annotation.
+[KEEP ATTENTION TO THE TYPE!]
+
+
+Into the folder 'scripts' you need to put the scripts
+from this folder.
+[REMEMBER TO MODIFY THE NEXT SCRIPTS ACCORDING TO YOUR NAMING:
+- CREATE_DB.mysql 
+- charts.R 
+- charts2.R]
+
+
+Into the folder 'sequences' you need to put the SCRIPT.sh
+modified accordingly to your naming.
+[HERE YOU WILL FIND MANY OUTPUT FILES]
+
