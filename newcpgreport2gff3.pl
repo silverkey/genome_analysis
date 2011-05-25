@@ -77,4 +77,3 @@ FT                    /Percent CG=69.28
 FT                    /ObsExp=0.74
 FT   numislands       5
 //
-
