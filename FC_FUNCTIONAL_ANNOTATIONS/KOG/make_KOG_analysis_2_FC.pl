@@ -3,16 +3,15 @@ use strict;
 use warnings;
 use DBI;
 use Data::Dumper;
-#use lib "$ENV{HOME}/src/bioperl-live";
 use Bio::DB::SeqFeature::Store;
 
 my $user = 'mysql_dev';
 my $pwd = 'dEvEl0pEr';
 my $GFFdbname = 'FC';
-my $WORDdbname = 'FC_upstream_100_1_NSH_100_WL_6';
-my $GOfile = '/Users/remo/Desktop/PROJECTS//MOCK/Fracy1_goinfo_FilteredModels1.tab';
-my $word = 'TATAAA';
-my $outfile = "$word\_GO_$WORDdbname";
+my $WORDdbname = 'FC_upstream_100_1_NSH_100_WL_9';
+my $GOfile = 'Fracy1_koginfo_FilteredModels1.tab';
+my $word = 'CAACAACAA';
+my $outfile = "$word\_KOG_2_$WORDdbname";
 
 my $GFFdb = Bio::DB::SeqFeature::Store->new(-adaptor => 'DBI::mysql',
                                             -user => $user,
@@ -74,10 +73,10 @@ sub collect_JGI_GO {
   open(GO,$tab) or die $!;
   while(my $row = <GO>) {
     chomp($row);
-    my($pid,$goid,$goname,$gotype,$goacc) = split(/\t/,$row);
-    $href->{protein}->{$pid}->{$goacc} ++;
-    $href->{class}->{$goacc}->{count} ++;
-    $href->{class}->{$goacc}->{name} = $goname;
+    my($tid,$pid,$kogid,$kogdef,$kogclass,$koggroup) = split(/\t/,$row);
+    $href->{protein}->{$pid}->{$kogclass} ++;
+    $href->{class}->{$kogclass}->{count} ++;
+    $href->{class}->{$kogclass}->{name} = $kogclass;
   }
   return($href);
 }
@@ -160,7 +159,22 @@ t=read.table(file='TATAAA_GO_FC_upstream_100_1_NSH_100_WL_6',sep="\t")
 a = c()
 for(i in 1:nrow(t)) {
   r = t[i,]
-  pval = prop.test(as.numeric(c(r[3],r[5])),as.numeric(c(r[2],r[4])))$p.value
+  pval = prop.test(as.numeric(c(r[5],r[3])),as.numeric(c(r[4],r[2])),alternative='g')$p.value
   a = c(a,pval)
 }
+a = p.adjust(a)
+t[a<=0.05,]
+
+
+
+
+t=read.table(file='CAACAA_GO_FC_upstream_100_1_NSH_100_WL_6',sep="\t")
+a = c()
+for(i in 1:nrow(t)) {
+  r = t[i,]
+  pval = prop.test(as.numeric(c(r[5],r[3])),as.numeric(c(r[4],r[2])),alternative='g')$p.value
+  a = c(a,pval)
+}
+a = p.adjust(a)
+t[a<=0.05,]
 
